@@ -1,10 +1,10 @@
 '''
 Скрипт запуска бота
 '''
-if __name__ == '__main__':
-    from dispatcher import run_bot
-else:
-    from Bot_utils.dispatcher import run_bot
+import sys
+if __name__ == '__main__': sys.path.append('../')
+
+from Bot_utils.dispatcher import run_bot
 
 
 def main() -> None:
