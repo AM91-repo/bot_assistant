@@ -4,10 +4,13 @@ import sys
 if __name__ == '__main__': sys.path.append('../')
 
 from random import randint
+# aiogramm
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import CommandStart, Command
 from config import TOKEN_API, HELP
 from Bot_utils.keyboard import KeyboardBot, KeyInLine
+
+from Users.User import HandlerUser
 
 Kd = KeyboardBot()
 dp = Dispatcher()
@@ -24,8 +27,6 @@ async def command_start_handler(message: types.Message) -> None:
     """
     
     Kd.start_menu()
-    # Kd.other_menu()
-    # print(Kd.get_menu())
 
     await message.answer(f"Hello, {message.from_user.username}!",
                          reply_markup=Kd.get_menu())
@@ -59,13 +60,10 @@ async def command_key_inline(message: types.Message) -> None:
         reply_markup=builder.in_line_key())
 
 
-@dp.callback_query(F.data == "random_value")
+@dp.callback_query()
 async def send_random_value(callback: types.CallbackQuery):
     await callback.message.answer(str(randint(1, 10)))
-    # await callback.answer(
-    #     text="Спасибо, что воспользовались ботом!",
-    #     show_alert=True
-    # )
+
 
 @dp.message()
 async def echo_upper(message: types.Message):
