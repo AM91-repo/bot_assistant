@@ -30,11 +30,14 @@
         async-timeout==4.0.3
         attrs==23.2.0
         certifi==2024.2.2
+        charset-normalizer==3.4.0
         frozenlist==1.4.1
         idna==3.6
         magic-filter==1.0.12
         multidict==6.0.5
         pydantic==2.5.3
         pydantic_core==2.14.6
+        requests==2.32.3
         typing_extensions==4.10.0
+        urllib3==2.2.3
         yarl==1.9.4
