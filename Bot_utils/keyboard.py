@@ -1,7 +1,10 @@
 import random
+import logging
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, \
     InlineKeyboardButton, CallbackQuery
 from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
+
+LOGGER = logging.getLogger(__name__)
 
 class KeyInLine():
     def __init__(self) -> None:
@@ -46,12 +49,14 @@ class KeyboardBot():
         ]
 
     def builder_menu(self):
+        LOGGER.debug('menu is bilder')
         builder = ReplyKeyboardBuilder()
         for i in range(1, 32):
             builder.add(KeyboardButton(text=str(i)))
         return builder.adjust(6)
 
     def get_menu(self):
+        LOGGER.debug('menu is set')
         self._keyboard = ReplyKeyboardMarkup(
             resize_keyboard=True,
             keyboard=self.list_keyboard)
