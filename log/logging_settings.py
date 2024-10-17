@@ -48,14 +48,14 @@ logging_config = {
             'filters': ['debug_warning_filter'],
             'stream': sys.stdout,
         },
-        # 'debag_file': {
-        #     'class': 'logging.FileHandler',
-        #     'filename': 'log/logs/debag.log',
-        #     'mode': 'a',
-        #     'level': 'DEBUG',
-        #     'formatter': 'formatter_2',
-        #     'filters': ['debug_warning_filter'],
-        # },
+        'debag_file': {
+            'class': 'logging.FileHandler',
+            'filename': 'log/logs/debag.log',
+            'mode': 'w',
+            'level': 'DEBUG',
+            'formatter': 'formatter_2',
+            'filters': ['debug_warning_filter'],
+        },
         'error_file': {
             'class': 'logging.FileHandler',
             'filename': 'log/logs/error.log',
@@ -73,9 +73,14 @@ logging_config = {
         }
     },
     'loggers': {
+        'main': {
+            'level': 'DEBUG',
+            'handlers': ['stdout', 'debag_file'],
+
+        },
         'Bot_utils.dispatcher': {
             'level': 'DEBUG',
-            'handlers': ['stdout'],
+            'handlers': ['stdout', 'debag_file'],
 
         },
         'Bot_utils.main': {

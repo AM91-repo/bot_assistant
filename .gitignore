@@ -4,3 +4,4 @@
 *.log
 config.py
 */help.txt
+.env

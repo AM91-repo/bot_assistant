@@ -14,7 +14,6 @@ from Users.User import HandlerUser
 
 Kd = KeyboardBot()
 dp = Dispatcher()
-bot = Bot(TOKEN_API)
 
 logger = logging.getLogger(__name__)
 
@@ -78,8 +77,12 @@ async def echo_upper(message: types.Message) -> None:
     await message.answer(message.text)
 
 
-def run_bot() -> None:
+def run_bot(token: str, admin_id: list) -> None:
     # logging.basicConfig(level=logging.INFO, stream=sys.stdout)
+    logger.info(f'bot token: "{token}"')
+    bot = Bot(token)
+    logger.info('create bot object')
+
     dp.startup.register(on_startup)
     asyncio.run(dp.start_polling(bot))
 
