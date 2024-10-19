@@ -7,10 +7,9 @@ from random import randint
 # aiogramm
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import CommandStart, Command
-from config import TOKEN_API, HELP
-from Bot_utils.keyboard import KeyboardBot, KeyInLine
-
-from Users.User import HandlerUser
+from config.config import HELP
+from app.bot.keyboards.keyboard import KeyboardBot, KeyInLine
+from app.infrastructure.Users.User import HandlerUser
 
 Kd = KeyboardBot()
 dp = Dispatcher()

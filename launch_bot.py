@@ -2,8 +2,10 @@
 import os
 
 import dotenv
-import Bot_utils
+# import Bot_utils
+import app
 import logging
+import app.bot
 import log
 
 from environs import Env
@@ -22,4 +24,5 @@ ADMIN_ID = [env.int('ADMIN_ID')]
 
 if __name__=='__main__':
     log.get_settings_logger()
-    Bot_utils.main(BOT_TOKEN, ADMIN_ID)
+    # Bot_utils.main(BOT_TOKEN, ADMIN_ID)
+    app.bot.main(BOT_TOKEN, ADMIN_ID)

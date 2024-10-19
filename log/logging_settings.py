@@ -78,15 +78,15 @@ logging_config = {
             'handlers': ['stdout', 'debag_file'],
 
         },
-        'Bot_utils.dispatcher': {
+        'app.bot.dispatcher': {
             'level': 'DEBUG',
             'handlers': ['stdout', 'debag_file'],
 
         },
-        'Bot_utils.main': {
+        'app.bot.bot': {
             'handlers': ['stdout'],
         },
-        'Bot_utils.keyboard': {
+        'app.bot.keyboard': {
             'level': 'DEBUG',
             'handlers': ['stdout', 'critical_file'],
         },

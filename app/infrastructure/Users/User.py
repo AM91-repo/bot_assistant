@@ -1,7 +1,7 @@
 import sys
 if __name__ == '__main__': sys.path.append('../')
 
-from DataBase.DB import DBHandler
+from app.infrastructure.DataBase.DB import DBHandler
 
 
 class HandlerUser():
