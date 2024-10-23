@@ -2,24 +2,35 @@
 import asyncio
 import logging
 
-import app.bot
+from aiogram import Bot, Dispatcher
+from app.bot import commands, message_all
 import log
 
 from config import Config, load_config
-from environs import Env
 
-LOGGER = logging.getLogger(__name__)
-env = Env()  # Создаем экземпляр класса Env
-env.read_env()  # Методом read_env() читаем файл .env и загружаем из него переменные в окружение 
-                          
-BOT_TOKEN = env('BOT_TOKEN')
-ADMIN_ID = [env.int('ADMIN_ID')]
+async def on_startup():
+    pass
+    logger.info('start bot')
 
 if __name__=='__main__':
     # Конфигурируем логирование
     log.get_settings_logger()
 
+    logger = logging.getLogger(__name__)
+
     # Загружаем конфиг в переменную config
     config: Config = load_config()
 
-    app.bot.main(config.tg_bot.token, config.tg_bot.admin_id)
+    # Инициализируем бот и диспетчер
+    logger.info(f'bot token: "{config.tg_bot.token}"')
+    bot = Bot(config.tg_bot.token)
+    dp = Dispatcher()
+    logger.info('create bot object')
+    
+    dp.include_router(commands.routet)
+    dp.include_router(message_all.routet)
+
+    dp.startup.register(on_startup)
+    asyncio.run(dp.start_polling(bot))
+
+    # app.bot.main(config.tg_bot.token, config.tg_bot.admin_id)

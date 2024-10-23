@@ -1,1 +1,2 @@
-from app.bot.bot import main
+from app.bot.handlers import commands
+from app.bot.handlers import message_all

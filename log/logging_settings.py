@@ -73,17 +73,18 @@ logging_config = {
         }
     },
     'loggers': {
-        'main': {
+        '__main__': {
             'level': 'DEBUG',
             'handlers': ['stdout', 'debag_file'],
 
         },
-        'app.bot.dispatcher': {
+        'app.bot.handlers.commands': {
             'level': 'DEBUG',
             'handlers': ['stdout', 'debag_file'],
 
         },
-        'app.bot.bot': {
+        'app.bot.handlers.message_all': {
+            'level': 'DEBUG',
             'handlers': ['stdout'],
         },
         'app.bot.keyboard': {
