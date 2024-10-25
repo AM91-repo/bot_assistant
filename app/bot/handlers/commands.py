@@ -3,7 +3,8 @@ import logging
 from aiogram import Router, types, F
 from aiogram.filters import CommandStart, Command
 from random import randint
-from config.config import HELP
+# from config.config import HELP
+from app.bot.lexicon.lexicon_ru import LEXICON_RU
 from app.bot.keyboards.keyboard import KeyboardBot, KeyInLine
 from app.infrastructure.Users.User import HandlerUser
 
@@ -29,10 +30,10 @@ async def command_start_handler(message: types.Message) -> None:
 @routet.message(Command(commands='help'))
 async def command_help_handler(message: types.Message) -> None:
     logger.info(f'Command "\help" from {message.from_user.username}')
-
+    logger.info(f'Command "\help" from {message.text}')
     Kd.help_menu()
 
-    await message.reply(text=HELP,
+    await message.reply(text=LEXICON_RU['/help'],
                         reply_markup=Kd.get_menu())
     await message.delete()
 
