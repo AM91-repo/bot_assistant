@@ -27,7 +27,7 @@ async def command_start_handler(message: types.Message) -> None:
     await message.delete()
 
 @routet.message(Command(commands='help'))
-async def command_start_handler(message: types.Message) -> None:
+async def command_help_handler(message: types.Message) -> None:
     logger.info(f'Command "\help" from {message.from_user.username}')
 
     Kd.help_menu()
@@ -38,10 +38,12 @@ async def command_start_handler(message: types.Message) -> None:
 
 
 @routet.message(Command(commands='other'))
-async def command_start_handler(message: types.Message) -> None:
+async def command_other_handler(message: types.Message) -> None:
 
     await message.reply(text=HELP,
-                        reply_markup=Kd.builder_menu().as_markup(resize_keyboard=True))
+                        reply_markup=Kd.builder_menu()\
+                            .as_markup(resize_keyboard=True,
+                                       one_time_keyboard=True))
     await message.delete()
 
 

@@ -1,7 +1,6 @@
-import random
 import logging
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, \
-    InlineKeyboardButton, CallbackQuery
+    InlineKeyboardButton
 from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
 
 LOGGER = logging.getLogger(__name__)
