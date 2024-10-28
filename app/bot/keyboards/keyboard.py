@@ -1,9 +1,24 @@
 import logging
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, \
-    InlineKeyboardButton
+    InlineKeyboardButton, BotCommand
 from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
+from app.bot.lexicon.lexicon_ru import LEXICON_COMMANDS_RU
 
 LOGGER = logging.getLogger(__name__)
+
+
+def set_main_menu() -> list[BotCommand]:
+
+    # Создаем список с командами и их описанием для кнопки menu
+    main_menu_commands = [
+        BotCommand(
+            command=command,
+            description=description
+        ) for command, description in LEXICON_COMMANDS_RU.items()
+    ]
+
+    return main_menu_commands
+
 
 class KeyInLine():
     def __init__(self) -> None:

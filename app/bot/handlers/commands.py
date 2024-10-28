@@ -41,7 +41,7 @@ async def command_help_handler(message: types.Message) -> None:
 @routet.message(Command(commands='other'))
 async def command_other_handler(message: types.Message) -> None:
 
-    await message.reply(text=HELP,
+    await message.reply(text=LEXICON_RU['other'],
                         reply_markup=Kd.builder_menu()\
                             .as_markup(resize_keyboard=True,
                                        one_time_keyboard=True))

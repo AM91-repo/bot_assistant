@@ -3,14 +3,15 @@ import asyncio
 import logging
 
 from aiogram import Bot, Dispatcher
-from app.bot import commands, message_all
+from app.bot import commands, message_all, set_main_menu
+
 import log
 
 from config import Config, load_config
 
-async def on_startup():
-    pass
+async def on_startup(bot: Bot):
     logger.info('start bot')
+    await bot.set_my_commands(set_main_menu())
 
 if __name__=='__main__':
     # Конфигурируем логирование
