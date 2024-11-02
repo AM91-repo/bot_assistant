@@ -3,7 +3,8 @@ import asyncio
 import logging
 
 from aiogram import Bot, Dispatcher
-from app.bot import commands, message_all, set_main_menu
+from app.bot import commands, message_all
+from app.bot import set_main_menu
 
 import log
 

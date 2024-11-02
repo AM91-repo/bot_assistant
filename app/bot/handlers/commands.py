@@ -5,11 +5,13 @@ from aiogram.filters import CommandStart, Command
 from random import randint
 # from config.config import HELP
 from app.bot.lexicon.lexicon_ru import LEXICON_RU
-from app.bot.keyboards.keyboard import KeyboardBot, KeyInLine
+from app.bot.keyboards.keyboard_button import KeyboardBot
+from app.bot.keyboards.keyboard_inline import KeyInLine
 from app.infrastructure.Users.User import HandlerUser
 
 routet = Router()
 Kd = KeyboardBot()
+builder = KeyInLine()
 
 logger = logging.getLogger(__name__)
 
@@ -50,12 +52,14 @@ async def command_other_handler(message: types.Message) -> None:
 
 @routet.message(Command(commands='inline'))
 async def command_key_inline(message: types.Message) -> None:
-    builder = KeyInLine()
     await message.answer(
         "Нажмите на кнопку, чтобы бот отправил число от 1 до 10",
         reply_markup=builder.in_line_key())
 
 
-@routet.callback_query()
+@routet.callback_query(F.data == builder.get_name_callback())
 async def send_random_value(callback: types.CallbackQuery) -> None:
     await callback.message.answer(str(randint(1, 10)))
+    await callback.answer(text='Число сформировано',
+                          show_alert=True,
+                          reply_markup=callback.message.reply_markup)
