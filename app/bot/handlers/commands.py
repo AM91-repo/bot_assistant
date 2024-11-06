@@ -1,6 +1,7 @@
 import logging
 
 from aiogram import Router, types, F
+from aiogram.types import Message
 from aiogram.filters import CommandStart, Command
 from random import randint
 # from config.config import HELP
@@ -16,16 +17,22 @@ builder = KeyInLine()
 logger = logging.getLogger(__name__)
 
 @routet.message(CommandStart())
-async def command_start_handler(message: types.Message) -> None:
+async def command_start_handler(message: Message, superadmin) -> None:
     """
     This handler receives messages with `/start` command
     """
-    logger.info(f'Command "\start" from {message.from_user.username}')
+    logger.info(f'Command "\start" from {message.from_user.username} '+\
+                f'id: {message.from_user.id}')
+    
+    text_admin = ''
+    
+    if message.from_user.id == superadmin:
+        text_admin = 'Вы главный админ, у вас полный доступ'
 
     Kd.start_menu()
 
     
-    await message.answer(f"Hello, {message.from_user.username}!",
+    await message.answer(f"Hello, {message.from_user.username}!\n{text_admin}",
                          reply_markup=Kd.get_menu())
     await message.delete()
 
