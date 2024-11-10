@@ -91,10 +91,10 @@ logging_config = {
             'level': 'DEBUG',
             'handlers': ['stdout', 'critical_file'],
         },
-        # 'aiogram.dispatcher': {
-        #     'level': 'INFO',
-        #     'handlers': ['stdout'],
-        # },
+        'aiogram.dispatcher': {
+            'level': 'INFO',
+            'handlers': ['stdout'],
+        },
     },
     # 'root': {
     #     'formatter': 'default',

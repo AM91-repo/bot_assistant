@@ -4,10 +4,10 @@ from aiogram import Router, types
 from app.bot.lexicon.lexicon_ru import LEXICON_RU
 from app.infrastructure.DataBase.DB import Users
 
-routet = Router()
+router = Router()
 logger = logging.getLogger(__name__)
 
-@routet.message()
+@router.message()
 async def echo_upper(message: types.Message,
                      Users: Users) -> None:
     logger.info(f'from user {message.from_user.username} ' + \

@@ -24,3 +24,12 @@ LEXICON_COMMANDS_RU: dict[str, str] = {
     '/friends' : 'Друзья',
     '/setting' : 'Настройки пользователя',
 }
+LEXICON_BUDGET_RU: dict = {
+    'start_description': 'Вы находитесь в разделе бюджет \n'
+                         'Выберите действия ниже на кнопках',
+    'start_menu': [
+        [{'текущий буджет': 'budget'}],
+        [{'внести доходы': 'income'}, 
+         {'внести расходы': 'expenses'}],
+    ],
+}

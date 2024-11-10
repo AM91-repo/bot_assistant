@@ -5,7 +5,7 @@ import logging
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
-from app.bot import commands, message_all
+from app.bot import commands, message_all, budget
 from app.bot import set_main_menu
 from app.infrastructure.DataBase.DB import Users
 
@@ -47,8 +47,9 @@ async def main():
     await set_main_menu(bot)
     
     # Регистрируем роутеры в диспетчере
-    dp.include_router(commands.routet)
-    dp.include_router(message_all.routet)
+    dp.include_router(commands.router)
+    dp.include_router(budget.router)
+    dp.include_router(message_all.router)
 
     dp.startup.register(on_startup)
 
