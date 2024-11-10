@@ -7,6 +7,7 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from app.bot import commands, message_all
 from app.bot import set_main_menu
+from app.infrastructure.DataBase.DB import Users
 
 import log
 
@@ -26,6 +27,8 @@ async def main():
     # Загружаем конфиг в переменную config
     config: Config = load_config()
 
+    FakeDataUsers = Users()
+
     # Инициализируем бот и диспетчер
     logger.info(f'bot token: "{config.tg_bot.token}"')
     bot = Bot(
@@ -36,7 +39,9 @@ async def main():
     logger.info('create bot object')
 
     # Помещаем нужные объекты в workflow_data диспетчера
-    dp.workflow_data.update({'superadmin': config.tg_bot.admin_id})
+    dp.workflow_data.update({'superadmin': config.tg_bot.admin_id,
+                             'Users': FakeDataUsers,
+                             'users': FakeDataUsers.users})
 
     # Настраиваем главное меню бота
     await set_main_menu(bot)

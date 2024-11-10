@@ -9,9 +9,9 @@ class DBHandler():
         pass
 
 
-class UserDB():
+class Users():
     def __init__(self) -> None:
-        pass
+        self.users: list = []
 
 
 class BudgetBD():

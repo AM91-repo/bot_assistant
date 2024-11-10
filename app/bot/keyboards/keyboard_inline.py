@@ -1,8 +1,15 @@
 import logging
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from aiogram.utils.keyboard import InlineKeyboardBuilder
+from aiogram.filters.callback_data import CallbackData
 
 LOGGER = logging.getLogger(__name__)
+
+
+class CallbackFactory(CallbackData, prefix="callback"):
+    x: int
+    y: int
+
 
 class KeyInLine():
     def __init__(self) -> None:

@@ -3,7 +3,6 @@ if __name__ == '__main__': sys.path.append('../')
 
 from app.infrastructure.DataBase.DB import DBHandler
 
-
 class HandlerUser():
     def __init__(self, name='0') -> None:
         self.name = name

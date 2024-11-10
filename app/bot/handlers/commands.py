@@ -9,6 +9,7 @@ from app.bot.lexicon.lexicon_ru import LEXICON_RU
 from app.bot.keyboards.keyboard_button import KeyboardBot
 from app.bot.keyboards.keyboard_inline import KeyInLine
 from app.infrastructure.Users.User import HandlerUser
+from app.infrastructure.DataBase.DB import Users
 
 routet = Router()
 Kd = KeyboardBot()
@@ -17,10 +18,17 @@ builder = KeyInLine()
 logger = logging.getLogger(__name__)
 
 @routet.message(CommandStart())
-async def command_start_handler(message: Message, superadmin) -> None:
+async def command_start_handler(message: Message, 
+                                superadmin: int, 
+                                users: list, 
+                                Users: Users) -> None:
     """
     This handler receives messages with `/start` command
     """
+    # logger.info(Users.users)
+    if message.from_user.id not in Users.users:
+        Users.users.append(message.from_user.id)
+        # logger.info(f'Add new user in list users: {Users.users}')
     logger.info(f'Command "\start" from {message.from_user.username} '+\
                 f'id: {message.from_user.id}')
     
