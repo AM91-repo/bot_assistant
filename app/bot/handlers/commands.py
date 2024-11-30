@@ -23,10 +23,10 @@ async def command_start_handler(message: Message,
                                 superadmin: int, 
                                 users: list, 
                                 Users: Users) -> None:
-    """
+    '''
     This handler receives messages with `/start` command
-    """
-    # logger.info(Users.users)
+    '''
+    
     if message.from_user.id not in Users.users:
         Users.users.append(message.from_user.id)
         # logger.info(f'Add new user in list users: {Users.users}')
@@ -59,8 +59,6 @@ async def command_help_handler(message: types.Message) -> None:
 @router.message(Command(commands='budget'))
 async def command_budget_handler(message: types.Message) -> None:
     logger.info(f'in budget mode')
-    # logger.info(LEXICON_BUDGET_RU['start_description'])
-    # logger.info(LEXICON_BUDGET_RU['start_menu'])
     await message.answer(
         text=LEXICON_BUDGET_RU['start_description'],
         reply_markup=get_standart_in_line_key(
