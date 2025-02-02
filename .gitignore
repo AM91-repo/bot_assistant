@@ -4,3 +4,4 @@
 *.log
 */help.txt
 .env
+test.db

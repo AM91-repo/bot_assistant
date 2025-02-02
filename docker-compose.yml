@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    env_file: .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - bot-network
+
+  bot:
+    build: .
+    env_file: .env
+    depends_on:
+      - postgres
+    networks:
+      - bot-network
+
+networks:
+  bot-network:
+
+volumes:
+  postgres_data:

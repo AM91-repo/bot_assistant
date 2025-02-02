@@ -1,0 +1,30 @@
+
+Copy
+project/
+├── bot/
+│   ├── src/
+│   │   ├── __init__.py
+│   │   ├── main.py
+│   │   ├── database/
+│   │   │   ├── __init__.py
+│   │   │   ├── models.py
+│   │   │   └── crud.py
+│   │   ├── handlers/
+│   │   │   ├── __init__.py
+│   │   │   ├── admin.py
+│   │   │   ├── budget.py
+│   │   │   ├── common.py
+│   │   │   └── user.py
+│   │   ├── keyboards/
+│   │   │   ├── __init__.py
+│   │   │   └── inline.py
+│   │   ├── middlewares/
+│   │   │   ├── __init__.py
+│   │   │   ├── access.py
+│   │   │   └── rate_limit.py
+│   │   └── utils/
+│   │       ├── __init__.py
+│   │       └── helpers.py
+├── docker-compose.yml
+├── Dockerfile
+└── .env
