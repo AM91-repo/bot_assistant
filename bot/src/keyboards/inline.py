@@ -1,32 +1,47 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from lexicon.lexicon_ru import LEXICON_RU
 
-def main_menu():
-    return InlineKeyboardMarkup(inline_keyboard=[
-        [
-            InlineKeyboardButton(text="Помощь", callback_data="help"),
-            InlineKeyboardButton(text="Бюджет", callback_data="budget")
-        ],
-        [
-            InlineKeyboardButton(text="Задачи", callback_data="tasks"),
-            InlineKeyboardButton(text="Профиль", callback_data="profile")
-        ],
-        [InlineKeyboardButton(text="Админка", callback_data="admin")]
-    ])
+def build_inline_keyboard(buttons_config: list) -> InlineKeyboardMarkup:
+    """
+    Строит инлайн-клавиатуру из конфигурации
+    :param buttons_config: Конфигурация кнопок из словаря LEXICON_RU
+    :return: Объект InlineKeyboardMarkup
+    """
+    keyboard = []
+    for row in buttons_config:
+        keyboard_row = []
+        for button in row:
+            keyboard_row.append(
+                InlineKeyboardButton(
+                    text=button['text'],
+                    callback_data=button['callback']
+                )
+            )
+        keyboard.append(keyboard_row)
+    return InlineKeyboardMarkup(inline_keyboard=keyboard)
 
-def budget_menu():
-    return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="Мой бюджет", callback_data="my_budget")],
-        [
-            InlineKeyboardButton(text="➕ Расход", callback_data="expense"),
-            InlineKeyboardButton(text="💵 Доход", callback_data="income")
-        ],
-        [InlineKeyboardButton(text="📅 Планирование", callback_data="planning")]
-    ])
+def admin_decision_kb(user_id: int, lexicon: dict) -> InlineKeyboardMarkup:
+    """
+    Клавиатура для админских действий
+    :param user_id: ID пользователя
+    :param lexicon: Словарь с текстами кнопок
+    :return: Объект InlineKeyboardMarkup
+    """
+    return InlineKeyboardMarkup(inline_keyboard=[[
+        InlineKeyboardButton(
+            text=lexicon['approve'],
+            callback_data=f"approve_{user_id}"
+        ),
+        InlineKeyboardButton(
+            text=lexicon['ban'],
+            callback_data=f"ban_{user_id}"
+        )
+    ]])
 
-def admin_decision_kb(user_id: int):
-    return InlineKeyboardMarkup(inline_keyboard=[
-        [
-            InlineKeyboardButton(text="✅ Одобрить", callback_data=f"approve_{user_id}"),
-            InlineKeyboardButton(text="⛔ Забанить", callback_data=f"ban_{user_id}")
-        ]
-    ])
+# Добавляем функцию main_menu
+def main_menu() -> InlineKeyboardMarkup:
+    """
+    Главное меню с командами
+    :return: Объект InlineKeyboardMarkup
+    """
+    return build_inline_keyboard(LEXICON_RU['main_menu']['buttons'])
